@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class ConsoleUI {
     /** register.Register of persons. */
-    private Register register;
+    private ArrayRegister arrayRegister;
     
     /**
      * In JDK 6 use Console class instead.
@@ -26,8 +26,8 @@ public class ConsoleUI {
         PRINT, ADD, UPDATE, REMOVE, FIND, EXIT
     };
     
-    public ConsoleUI(Register register) {
-        this.register = register;
+    public ConsoleUI(ArrayRegister arrayRegister) {
+        this.arrayRegister = arrayRegister;
     }
     
     public void run() {
@@ -80,13 +80,11 @@ public class ConsoleUI {
         
         return Option.values()[selection - 1];
     }
-    
-    //TODO: Implement the method printRegister
+
     private void printRegister() {
-        for (int i = 0; i < register.getSize(); i++) {
-            System.out.println((i + 1) + ". " + register.getPerson(i));
+        for (int i = 0; i < arrayRegister.getSize(); i++) {
+            System.out.println((i + 1) + ". " + arrayRegister.getPerson(i));
         }
-//        throw new UnsupportedOperationException("Method printRegister not yet implemented");
     }
     
     private void addToRegister() {
@@ -95,11 +93,10 @@ public class ConsoleUI {
         System.out.println("Enter Phone Number: ");
         String phoneNumber = readLine();
 
-        register.addPerson(new Person(name, phoneNumber));
+        arrayRegister.addPerson(new Person(name, phoneNumber));
 
     }
-    
-    //TODO: Implement the method updateRegister
+
     private void updateRegister() {
 
         System.out.println("Enter index: ");
@@ -108,15 +105,12 @@ public class ConsoleUI {
         String newName = readLine();
         System.out.println("Enter new phone number: ");
         String newPhoneNumber = readLine();
-        register.getPerson(index).setName(newName);
-        register.getPerson(index).setPhoneNumber(newPhoneNumber);
+        arrayRegister.getPerson(index).setName(newName);
+        arrayRegister.getPerson(index).setPhoneNumber(newPhoneNumber);
 
-//        throw new UnsupportedOperationException("Method updateRegister not yet implemented");
     }
-    
-    //TODO: Implement the method findInRegister
-    private void findInRegister() {
 
+    private void findInRegister() {
         System.out.println("Find in register by entering name or phone number: ");
 
         String name = readLine();
@@ -125,7 +119,7 @@ public class ConsoleUI {
 
         while(true) {
             if(mt1.matches()) {
-                register.findPersonByName(name);
+                arrayRegister.findPersonByName(name);
                 break;
             }
             if(!mt1.matches()) {
@@ -133,21 +127,18 @@ public class ConsoleUI {
                 Pattern pt2 = Pattern.compile("(\\d{4}|\\+\\d{3})\\s(\\d{3})\\s(\\d{3})");
                 Matcher mt2 = pt2.matcher(phoneNumber);
                 if (mt2.matches()){
-                    register.findPersonByPhoneNumber(phoneNumber);
+                    arrayRegister.findPersonByPhoneNumber(phoneNumber);
                     break;
                 }
             }
             throw new RuntimeException("Invalid name or phone number");
         }
-
-//        throw new UnsupportedOperationException("Method findInRegister not yet implemented");
     }
     
     private void removeFromRegister() {
         System.out.println("Enter index: ");
         int index = Integer.parseInt(readLine());
-        Person person = register.getPerson(index - 1);
-        register.removePerson(person);
+        Person person = arrayRegister.getPerson(index - 1);
+        arrayRegister.removePerson(person);
     }
-
 }

@@ -57,8 +57,7 @@ public class Person implements Comparable<Person> {
         }
         phoneNumber = phoneNumberNew;
     }
-    
-    //TODO: Implement method isValidPhoneNumber
+
     /**
      * Validates the phone number. Valid phone numbers contains only digits.
      * @param phoneNumber phone number to validate
@@ -84,6 +83,5 @@ public class Person implements Comparable<Person> {
     public int compareTo(Person o) {
 
         return this.name.compareTo(o.name);
-
     }
 }
