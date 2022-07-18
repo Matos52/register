@@ -1,9 +1,12 @@
 package register;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * register.Person.
  */
-public class Person {
+public class Person implements Comparable<Person> {
     /** Name of this person. */
     private String name;
     
@@ -61,8 +64,12 @@ public class Person {
      * @param phoneNumber phone number to validate
      * @return <code>true</code> if phone number is valid, <code>false</code> otherwise
      */
-    private boolean isValidPhoneNumber(String phoneNumber) {        
-        return false;
+    private boolean isValidPhoneNumber(String phoneNumber) {
+
+        Pattern pt = Pattern.compile("(\\d{4}|\\+\\d{3})\\s(\\d{3})\\s(\\d{3})");
+        Matcher mt = pt.matcher(phoneNumber);
+
+        return mt.matches();
     }
     
     /**
@@ -71,5 +78,12 @@ public class Person {
      */
     public String toString() {
         return  name + " (" + phoneNumber + ")";
+    }
+
+    @Override
+    public int compareTo(Person o) {
+
+        return this.name.compareTo(o.name);
+
     }
 }

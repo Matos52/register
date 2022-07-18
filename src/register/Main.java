@@ -6,9 +6,11 @@ package register;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Register register = new Register(20);
+        Register register = new Register(5);
 
-        register.addPerson(new Person("Janko Hrasko", "0900123456"));
+        register.addPerson(new Person("Matej Regec" , "0907 811 417"));
+        register.addPerson(new Person("Eduard Remetei" , "+421 855 255"));
+        register.addPerson(new Person("Zuzana Michlikova" , "0918 111 216"));
 
         ConsoleUI ui = new ConsoleUI(register);
         ui.run();

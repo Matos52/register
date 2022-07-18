@@ -1,5 +1,7 @@
 package register;
 
+import java.util.Arrays;
+
 /**
  * register.Person register.
  */
@@ -61,9 +63,21 @@ public class Register {
      * @return person with specified phone number
      */
     public Person findPersonByName(String name) {
-        throw new UnsupportedOperationException("Method findPersonByName not yet implemented");
+        Person person = null;
+        for (int i = 0; i < persons.length; i++) {
+            if(getPerson(i).getName().equals(name)) {
+                 person = getPerson(i);
+            }
+        }
+        if(person == null) {
+            throw new RuntimeException("This name is not in register");
+        }
+        System.out.println("Person with provided name is: " + person);
+        return person;
+
+//        throw new UnsupportedOperationException("Method findPersonByName not yet implemented");
     }
-    
+
     //TODO: Implement the method findPersonByPhoneNumber
     /**
      * Returns the person with specified phone number in this register or <code>null</code>,
@@ -72,7 +86,21 @@ public class Register {
      * @return person with specified phone number
      */
     public Person findPersonByPhoneNumber(String phoneNumber) {
-        throw new UnsupportedOperationException("Method findPersonByPhoneNumber not yet implemented");
+
+        Person person = null;
+
+        for (int i = 0; i < persons.length; i++) {
+            if(getPerson(i).getPhoneNumber().equals(phoneNumber)) {
+                person = getPerson(i);
+            }
+        }
+        if(person == null) {
+            throw new RuntimeException("This phone number is not in register");
+        }
+        System.out.println("Person with provided phone number is: " + person);
+        return person;
+
+//        throw new UnsupportedOperationException("Method findPersonByPhoneNumber not yet implemented");
     }
     
     //TODO: Implement the method removePerson
@@ -81,6 +109,10 @@ public class Register {
      * @param person person to remove
      */
     public void removePerson(Person person) {
-        throw new UnsupportedOperationException("Method removePerson not yet implemented");
+        person = null;
+        count--;
+//        Arrays.sort(persons);
+
+//        throw new UnsupportedOperationException("Method removePerson not yet implemented");
     }
 }
